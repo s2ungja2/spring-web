@@ -1,5 +1,6 @@
 package kr.ac.knu.study.sort;
 
+import kr.ac.knu.study.model.Student;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
@@ -15,9 +16,15 @@ import static org.junit.Assert.assertTrue;
 public class Step1Test {
     @Test
     public void test() {
-        List<Integer> list = Arrays.asList(3, 5, 2, 4, 1);
+        List<Student> list = Arrays.asList(
+                new Student("Robin", 100),
+                new Student("Hobin", 90),
+                new Student("Kobin", 80),
+                new Student("Tobin", 70),
+                new Student("Bobin", 60)
+        );
 
-        List<Integer> sortedList = Step1.sort(list);
-        System.out.println(sortedList);
+//        List<Student> sortedList = Step1.sort(list, true);
+//        System.out.println(sortedList);
     }
 }

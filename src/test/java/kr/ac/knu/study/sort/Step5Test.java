@@ -30,6 +30,15 @@ public class Step5Test {
 
     @Test
     public void Integer_오름차순_테스트() {
+        Step5.sort(integerList, true, new Step5.Comp<Integer>() {
+            @Override
+            public boolean isSwap(Integer o1, Integer o2, boolean isAsc) {
+                if(o1>o2){
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 
     @Test
@@ -38,6 +47,16 @@ public class Step5Test {
 
     @Test
     public void Student_Grade_오름차순_테스트() {
+        List<Student> results = Step5.sort(studentList, true, new Step5.Comp<Student>() {
+            @Override
+            public boolean isSwap(Student o1, Student o2, boolean isAsc) {
+                if(o1.getGrade() > o2.getGrade()){
+                    return true;
+                }
+                return false;
+            }
+        });
+        System.out.println(results);
     }
 
     @Test

@@ -50,6 +50,8 @@ public class WebConfigProfiles {
         return new UserOperator() {
             @Override
             public KnuUser getKnuUserFromAccessToken(String accessToken) {
+                // facebook 로그인 토큰 에러 로그
+                log.info("INFO : Authenticating login token: EAACE");
                 log.info("DEV!! : {}", accessToken);
                 FacebookUser facebookUser = createFacebookUser(accessToken);
                 if (facebookUser == null) {
@@ -66,7 +68,9 @@ public class WebConfigProfiles {
         try {
             facebookUser = facebookClient.callFacebookProfile(accessToken);
         } catch (Exception e) {
+            // facebook 로그인 토큰 에러 로그
             log.error("Facebook Login fail [{}] : {}", accessToken, e.toString());
+            log.info("INFO : Authentication fail: token is invalid: EAACE");
         }
         return facebookUser;
     }

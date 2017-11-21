@@ -47,6 +47,7 @@ public class BoardController {
     @GetMapping(value = "/v1/boards")
     public Page<Board> findBoardList(@ApiIgnore @PageableDefault(sort = {"idx"}, direction = Sort.Direction.DESC, size = 10)  Pageable pageable) {
         Page<Board> boardPage = boardService.findBoards(pageable);
+        log.info("{}", boardPage.getContent());
         return boardPage;
     }
 
@@ -63,12 +64,17 @@ public class BoardController {
     @ResponseStatus(HttpStatus.CREATED)
     public void createBoard(@RequestBody BoardDTO boardDTO, @ApiIgnore @AuthenticationPrincipal KnuUser knuUser) {
         boardService.insertBoard(knuUser, boardDTO);
+
+        // 게시물 등록 로그 작성
+        log.info("{}", boardDTO.getTitle());
     }
 
     @PutMapping(value = "/v1/boards/{idx}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateBoard(@PathVariable int idx, @RequestBody BoardDTO boardDTO, @ApiIgnore @AuthenticationPrincipal KnuUser knuUser) {
         boardService.updateBoard(knuUser, idx, boardDTO);
+
+        // 게시물 업데이트 로그 작성
     }
 
     @DeleteMapping(value = "/v1/boards/{idx}")

@@ -33,6 +33,12 @@ public class ExampleService {
         board3.setKnuUser(new KnuUser() {{setName("Ian");}});
         boardList.add(board3);
 
+        Board board4 = new Board();
+        board4.setIdx(4);
+        board4.setTitle("집에가고 싶어요");
+        board4.setKnuUser(new KnuUser() {{setName("Kim");}});
+        boardList.add(board4);
+
         return boardList;
     }
 }
